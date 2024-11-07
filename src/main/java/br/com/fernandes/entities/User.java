@@ -31,16 +31,17 @@ public class User implements Serializable {
 	private String VerificacaoToken;
 	private boolean isVerificado;
 	
-	public User(String nome, String email, String senha, String celular, String role, StatusUser status,
-			Date dataNascimento) {
+	public User(String nome, String email, String senha, String celular, String role, Date dataNascimento) {
 		super();
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
 		this.celular = celular;
 		this.role = role;
-		this.status = status;
 		this.dataNascimento = dataNascimento;
+		this.dataCriacao = new Date();
+		this.isVerificado = false;
+		this.status = StatusUser.Bloqueado;
 	}
 
 	public Long getId() {

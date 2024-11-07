@@ -30,6 +30,8 @@ public class User implements Serializable {
 	private Date dataNascimento;
 	private String VerificacaoToken;
 	private boolean isVerificado;
+
+	public User() {}
 	
 	public User(String nome, String email, String senha, String celular, String role, Date dataNascimento) {
 		super();
@@ -43,6 +45,7 @@ public class User implements Serializable {
 		this.isVerificado = false;
 		this.status = StatusUser.Bloqueado;
 	}
+
 
 	public Long getId() {
 		return id;

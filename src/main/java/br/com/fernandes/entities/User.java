@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+import br.com.fernandes.enums.RoleUser;
 import br.com.fernandes.enums.StatusUser;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,7 +26,7 @@ public class User implements Serializable {
 	private String senha;
 	private Date dataCriacao;
 	private String celular;
-	private String role;
+	private RoleUser role;
 	private StatusUser status;
 	private Date dataNascimento;
 	private String VerificacaoToken;
@@ -33,7 +34,7 @@ public class User implements Serializable {
 
 	public User() {}
 	
-	public User(String nome, String email, String senha, String celular, String role, Date dataNascimento) {
+	public User(String nome, String email, String senha, String celular, RoleUser role, Date dataNascimento) {
 		super();
 		this.nome = nome;
 		this.email = email;
@@ -95,11 +96,11 @@ public class User implements Serializable {
 		this.celular = celular;
 	}
 
-	public String getRole() {
+	public RoleUser getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(RoleUser role) {
 		this.role = role;
 	}
 

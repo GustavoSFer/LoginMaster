@@ -30,6 +30,7 @@ public class User implements Serializable {
 	private String celular;
 	@Enumerated(EnumType.STRING)
 	private RoleUser role;
+	@Enumerated(EnumType.STRING)
 	private StatusUser status;
 	private Date dataNascimento;
 	private String VerificacaoToken;

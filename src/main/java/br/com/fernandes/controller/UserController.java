@@ -44,7 +44,8 @@ public class UserController {
 	public ResponseEntity<List<UserDTO>> findAll() {
 		List<User> users = userService.findAll();
 		
-		List<UserDTO> userDTO = users.stream().map(x -> UserMapperDTO.userToUserDTO(x)).collect(Collectors.toList());
+		//List<UserDTO> userDTO = users.stream().map(x -> UserMapperDTO.userToUserDTO(x)).collect(Collectors.toList());
+		List<UserDTO> userDTO = users.stream().map(UserMapperDTO::userToUserDTO).collect(Collectors.toList());
 		
 		return ResponseEntity.ok().body(userDTO);
 	}

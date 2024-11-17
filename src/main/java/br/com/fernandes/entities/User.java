@@ -7,6 +7,8 @@ import java.util.Objects;
 import br.com.fernandes.enums.RoleUser;
 import br.com.fernandes.enums.StatusUser;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -26,6 +28,7 @@ public class User implements Serializable {
 	private String senha;
 	private Date dataCriacao;
 	private String celular;
+	@Enumerated(EnumType.STRING)
 	private RoleUser role;
 	private StatusUser status;
 	private Date dataNascimento;
@@ -35,16 +38,13 @@ public class User implements Serializable {
 	public User() {}
 	
 	public User(String nome, String email, String senha, String celular, RoleUser role, Date dataNascimento) {
-		super();
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
 		this.celular = celular;
 		this.role = role;
 		this.dataNascimento = dataNascimento;
-		this.dataCriacao = new Date();
 		this.isVerificado = false;
-		this.status = StatusUser.Bloqueado;
 	}
 
 

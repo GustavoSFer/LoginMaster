@@ -1,9 +1,14 @@
 package br.com.fernandes.service;
 
+
+
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.fernandes.entities.User;
+import br.com.fernandes.enums.StatusUser;
 import br.com.fernandes.repository.UserRepository;
 
 @Service
@@ -17,6 +22,9 @@ public class UserService {
 	}
 
 	public User createUser(User user) {
+		user.setDataCriacao(new Date());
+		user.setStatus(StatusUser.Bloqueado);
+		
 		return userRepository.save(user);
 	}
 

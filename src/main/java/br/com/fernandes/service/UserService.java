@@ -3,6 +3,7 @@ package br.com.fernandes.service;
 
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,10 @@ public class UserService {
 		user.setStatus(StatusUser.Bloqueado);
 		
 		return userRepository.save(user);
+	}
+	
+	public List<User> findAll() {
+		return userRepository.findAll();
 	}
 
 }

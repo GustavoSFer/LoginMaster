@@ -1,17 +1,23 @@
 package br.com.fernandes.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fernandes.dto.UserCreateDTO;
+import br.com.fernandes.dto.UserDTO;
 import br.com.fernandes.entities.User;
 import br.com.fernandes.service.UserService;
 import br.com.fernandes.util.DtoMapper;
+import br.com.fernandes.util.UserMapperDTO;
 import jakarta.validation.Valid;
 
 @RestController
@@ -33,5 +39,15 @@ public class UserController {
 		
 		return ResponseEntity.ok().body(create);
 	}
+	
+	@GetMapping
+	public ResponseEntity<List<UserDTO>> findAll() {
+		List<User> users = userService.findAll();
+		
+		List<UserDTO> userDTO = users.stream().map(x -> UserMapperDTO.userToUserDTO(x)).collect(Collectors.toList());
+		
+		return ResponseEntity.ok().body(userDTO);
+	}
+
 
 }

@@ -65,7 +65,7 @@ public class UserController {
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<UserDTO> update(@PathVariable Long id, @RequestBody UserCreateDTO UserCreateDTO) {
+	public ResponseEntity<UserDTO> update(@PathVariable Long id, @Valid @RequestBody UserCreateDTO UserCreateDTO) {
 		User user = DtoMapper.dtoCreateToEntity(UserCreateDTO);
 		
 		User userUpdate = userService.update(id, user);
@@ -74,7 +74,7 @@ public class UserController {
 	}
 	
 	@PatchMapping(value = "/{id}/password")
-	public ResponseEntity<String> updatePassword(@PathVariable Long id, @RequestBody UserPasswordDTO userPassword) {
+	public ResponseEntity<String> updatePassword(@PathVariable Long id, @Valid @RequestBody UserPasswordDTO userPassword) {
 		
 		userService.updatePassword(id, userPassword);
 		

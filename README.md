@@ -42,6 +42,100 @@ Em Password, insira: L02I6M@s7er.
 O Postman irá automaticamente gerar o cabeçalho Authorization com as credenciais em base64.
 
 
+
+---
+
+
+```
+# Metodos HTTP
+```
+
+
+
+### 1. **Criação de Usuário**
+- **Método HTTP:** `POST`
+- **URL:** `http://localhost:8080/user`
+
+
+- **Corpo da Requisição:**
+  ```json
+  {
+    "nome": "Gustavo",
+    "email": "email@email.com",
+    "senha": "7438fd",
+    "celular": "11958956948",
+    "role": "ADMINISTRADOR",
+    "dataNascimento": "1992-05-12"
+  }
+
+### 2. **Buscar Todos os Usuários**
+- **Método HTTP:** `GET`
+- **URL:** `http://localhost:8080/user`
+
+
+- **Descrição:** Retorna uma lista de todos os usuários cadastrados no sistema.
+
+---
+
+### 3. **Buscar Usuário por ID**
+- **Método HTTP:** `GET`
+- **URL:** `http://localhost:8080/user/{id}`
+  - Substitua `{id}` pelo ID do usuário que deseja buscar.
+
+- **Descrição:** Retorna os dados de um usuário específico.
+
+---
+
+### 4. **Atualizar Usuário**
+
+- **Método HTTP:** `PUT`
+- **URL:** `http://localhost:8080/user/{id}`
+  - Substitua `{id}` pelo ID do usuário que deseja atualizar.
+
+
+#### Corpo da Requisição:
+```json
+{
+  "nome": "Gustavo Atualizado",
+  "email": "email@atualizado.com",
+  "senha": "novaSenha123",
+  "celular": "11999999999",
+  "role": "USUARIO",
+  "dataNascimento": "1992-05-12"
+}
+```
+
+---
+
+### 5. **Atualizar Senha do Usuário**
+
+- **Método HTTP:** `PATCH`
+- **URL:** `http://localhost:8080/user/{id}/password`
+  - Substitua `{id}` pelo ID do usuário que deseja atualizar a senha.
+
+
+#### Corpo da Requisição:
+```json
+{
+  "novaSenha": "novaSenhaForte123"
+}
+
+```
+
+---
+
+### 6. **Excluir Usuário**
+
+- **Método HTTP:** `DELETE`
+- **URL:** `http://localhost:8080/user/{id}`
+  - Substitua `{id}` pelo ID do usuário que deseja excluir.
+
+
+#### Descrição:
+Marca o usuário como cancelado no sistema.
+
+---
+
 ## Tabelas
 
 

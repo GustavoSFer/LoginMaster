@@ -9,6 +9,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.fernandes.dto.UserPasswordDTO;
 import br.com.fernandes.entities.User;
 import br.com.fernandes.enums.StatusUser;
 import br.com.fernandes.repository.UserRepository;
@@ -56,5 +57,13 @@ public class UserService {
 		findUser.setEmail(user.getEmail());
 		findUser.setRole(user.getRole());
 		findUser.setSenha(user.getSenha());		
+	}
+
+	public void updatePassword(Long id, UserPasswordDTO userPassword) {
+		User findUser = findById(id);
+		
+		findUser.setSenha(userPassword.novaSenha());
+		
+		userRepository.save(findUser);		
 	}
 }

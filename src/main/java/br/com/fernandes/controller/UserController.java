@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fernandes.dto.UserCreateDTO;
 import br.com.fernandes.dto.UserDTO;
+import br.com.fernandes.dto.UserPasswordDTO;
 import br.com.fernandes.entities.User;
 import br.com.fernandes.service.UserService;
 import br.com.fernandes.util.DtoMapper;
@@ -67,8 +69,15 @@ public class UserController {
 		
 		User userUpdate = userService.update(id, user);
 		
-		
 		return ResponseEntity.ok().body(UserMapperDTO.userToUserDTO(userUpdate));
+	}
+	
+	@PatchMapping(value = "/{id}/password")
+	public ResponseEntity<String> updatePassword(@PathVariable Long id, @RequestBody UserPasswordDTO userPassword) {
+		
+		userService.updatePassword(id, userPassword);
+		
+		return ResponseEntity.ok("Senha alterada com sucesso!");
 	}
 
 }

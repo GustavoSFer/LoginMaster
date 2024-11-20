@@ -9,6 +9,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.fernandes.HashCode.PasswordEncodeAndMatches;
 import br.com.fernandes.dto.UserPasswordDTO;
 import br.com.fernandes.entities.User;
 import br.com.fernandes.enums.StatusUser;
@@ -28,6 +29,7 @@ public class UserService {
 	public User createUser(User user) {
 		user.setDataCriacao(new Date());
 		user.setStatus(StatusUser.Bloqueado);
+		user.setSenha(PasswordEncodeAndMatches.encodePassword(user.getSenha()));
 		
 		return userRepository.save(user);
 	}
@@ -56,13 +58,13 @@ public class UserService {
 		findUser.setDataNascimento(user.getDataNascimento());
 		findUser.setEmail(user.getEmail());
 		findUser.setRole(user.getRole());
-		findUser.setSenha(user.getSenha());		
+		findUser.setSenha(PasswordEncodeAndMatches.encodePassword(user.getSenha()));		
 	}
 
 	public void updatePassword(Long id, UserPasswordDTO userPassword) {
 		User findUser = findById(id);
 		
-		findUser.setSenha(userPassword.novaSenha());
+		findUser.setSenha(PasswordEncodeAndMatches.encodePassword(userPassword.novaSenha()));
 		
 		userRepository.save(findUser);		
 	}

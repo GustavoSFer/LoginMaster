@@ -40,4 +40,21 @@ public class UserService {
 		
 		return user.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
+
+	public User update(Long id, User user) {
+		User findUser = findById(id);
+		
+		updateUser(findUser, user);
+		
+		return userRepository.save(findUser);
+	}
+
+	private void updateUser(User findUser, User user) {
+		findUser.setNome(user.getNome());
+		findUser.setCelular(user.getCelular());
+		findUser.setDataNascimento(user.getDataNascimento());
+		findUser.setEmail(user.getEmail());
+		findUser.setRole(user.getRole());
+		findUser.setSenha(user.getSenha());		
+	}
 }

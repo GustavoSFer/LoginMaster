@@ -66,4 +66,12 @@ public class UserService {
 		
 		userRepository.save(findUser);		
 	}
+
+	public void cancelaUser(Long id) {
+		User findUser = findById(id);
+		
+		findUser.setStatus(StatusUser.Cancelado);
+		
+		userRepository.save(findUser);
+	}
 }

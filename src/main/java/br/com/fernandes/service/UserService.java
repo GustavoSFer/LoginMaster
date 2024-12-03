@@ -20,10 +20,12 @@ import br.com.fernandes.service.exception.ResourceNotFoundException;
 public class UserService {
 	
 	private final UserRepository userRepository;
+	private final EmailService emailService;
 	
 	@Autowired
-	public UserService(UserRepository userRepository) {
-		this.userRepository = userRepository;		
+	public UserService(UserRepository userRepository, EmailService emailService) {
+		this.userRepository = userRepository;
+		this.emailService = emailService;
 	}
 
 	public User createUser(User user) {
@@ -31,6 +33,7 @@ public class UserService {
 		user.setStatus(StatusUser.Bloqueado);
 		user.setSenha(PasswordEncodeAndMatches.encodePassword(user.getSenha()));
 		
+		emailService.sendSimpleEmail(user.getEmail(), "Confirmação de cadastro", "Para confirmar seu cadastro...");
 		return userRepository.save(user);
 	}
 	

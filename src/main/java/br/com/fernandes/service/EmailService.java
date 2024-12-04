@@ -2,7 +2,12 @@ package br.com.fernandes.service;
 
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,5 +32,11 @@ public class EmailService {
     	} catch( Exception e) {
     		System.out.println(e.getMessage());
     	}
+    }
+    
+    public String carregaTamplateEmail() throws IOException {
+    	ClassPathResource resource = new ClassPathResource("EmailConfirmacao.html");
+    	
+    	return new String(resource.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
     }
 }

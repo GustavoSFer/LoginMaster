@@ -33,7 +33,7 @@ public class UserService {
 		user.setStatus(StatusUser.Bloqueado);
 		user.setSenha(PasswordEncodeAndMatches.encodePassword(user.getSenha()));
 		
-		emailService.sendSimpleEmail(user.getEmail(), "Confirmação de cadastro", "Para confirmar seu cadastro...");
+		emailService.sendSimpleEmail(user, "Confirmação de cadastro");
 		return userRepository.save(user);
 	}
 	
